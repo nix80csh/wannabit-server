@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.wannabit</groupId>
+		<artifactId>wannabit</artifactId>
+		<version>4.0.0</version>
+	</parent>
+	<artifactId>wannabit-api-wallet</artifactId>
+	<packaging>war</packaging>
+	<name>wannabit-api-wallet</name>
+
+	<dependencies>
+
+		<!-- wannabit core -->
+		<dependency>
+			<groupId>io.wannabit</groupId>
+			<artifactId>wannabit-core</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<!-- wannabit util -->
+		<dependency>
+			<groupId>io.wannabit</groupId>
+			<artifactId>wannabit-util</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- mysql connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.ingenieux</groupId>
+			<artifactId>beanstalk-maven-plugin</artifactId>
+			<version>1.5.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-nop</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.vaadin.external.google</groupId>
+					<artifactId>android-json</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+	</dependencies>
+	<properties>
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+		<beanstalk.versionLabel>${maven.build.timestamp}</beanstalk.versionLabel>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>br.com.ingenieux</groupId>
+				<artifactId>beanstalk-maven-plugin</artifactId>
+				<version>1.5.0</version>
+				<configuration>
+					<regionName>ap-northeast-2</regionName>
+					<s3Bucket>elasticbeanstalk-ap-northeast-2-793775630439</s3Bucket>
+					<applicationName>wannabit</applicationName>
+					<!-- <credentialId>Freetty-Profile</credentialId> -->
+					<serverId>aws.amazon.com</serverId>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
